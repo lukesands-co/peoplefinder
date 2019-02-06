@@ -2,7 +2,6 @@
   .media
     .media-left.cb-leadership-profile-image
       = profile_image_tag person
-    - unless controller_name == 'home'
       %h4.media-heading
         = link_to person, person
       = leaderships.map(&:role).select(&:present?).sort.join(', ')

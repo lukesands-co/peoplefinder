@@ -90,4 +90,21 @@ module PeopleHelper
     end
   end
 
+  def cities_options(person)
+    cities = City.by_name.map{|city| [city.name, city.id]}
+    cities << select_other
+    options_for_select cities, person.city_id
+  end
+
+  def buildings_options(person)
+    buildings = Building.by_name.map{|building| [building.address, building.id]}
+    buildings << select_other
+    options_for_select buildings, person.building_id
+  end
+
+  private
+    def select_other
+      ['Other...', nil]
+    end
+
 end

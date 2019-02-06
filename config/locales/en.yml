@@ -40,17 +40,17 @@ en:
         teams_checkbox_label: Teams
   sessions:
     login_page:
-      heading: Request link to access People Finder
+      heading: Log in to People Finder
       heading_unauthorised: Log in to edit People Finder
       intro: |
-        We will email you a secure link so you can log in to People Finder and create or edit profiles. The link will be active for %{ttl}.
+        If you don't have a government Google account, we can email you a secure link so you can log in to People Finder. The link will be active for 4 hours.
       intro_unauthorised: |
         For security reasons, you have to be logged in to People Finder to make any changes.
         We will email you a secure link so you can log in. This link will be active for %{ttl}.
       heading_google: Got a government Google account?
       body_google:
         If you have a Google account ending in gov.uk, you can log in now.
-      heading_other: Enter your MOJ email address
+      heading_other: Enter your Cabinet Office email address
       log_in_google: Log in
       log_in_email: Request link
     unsupported_browser:
@@ -81,7 +81,7 @@ en:
         <p>
           You have clicked the link in the
           <span style="font-weight: bold">
-            Access request to MoJ People Finder
+            Access request to People Finder
           </span>
           email and this has opened %{browser_name}.
         </p>
@@ -100,7 +100,7 @@ en:
       title: Link sent — check your email
       body_intro: We’re just emailing you a link to access People Finder. This can take up to 5 minutes.
       body_ttl_warning: "When it arrives, click on the link (which is active for %{ttl}). This will log you in to People Finder and enable you to make any changes."
-      body_informative_html: Please check your inbox for this email from <a href="mailto:people-finder-support@digital.justice.gov.uk">people-finder-support@digital.justice.gov.uk</a>.
+      body_informative_html: Please check your inbox for this email from <a href="mailto:peoplefinder@cabinetoffice.gov.uk">peoplefinder@cabinetoffice.gov.uk</a>.
       body_dont_panic: If you can’t find it, check your junk folder and add our address to your safe list.
       token_auth_disabled: "Sorry, the alternate login method is not availabe. Please login using your Google account."
   controllers:
@@ -249,21 +249,21 @@ en:
       subject: "People Finder profile improvements"
   user_update_mailer:
     new_profile_email:
-      subject: "You’re on MOJ People Finder, check your profile today"
+      subject: "You’re on People Finder, check your profile today"
     updated_profile_email:
-      subject: "Your profile on MOJ People Finder has been edited"
+      subject: "Your profile on People Finder has been edited"
     deleted_profile_email:
-      subject: "Your profile on MOJ People Finder has been deleted"
+      subject: "Your profile on People Finder has been deleted"
     updated_address_from_email:
-      subject: "This email address has been removed from a profile on MOJ People Finder"
+      subject: "This email address has been removed from a profile on People Finder"
     updated_address_to_email:
-      subject: "This email address has been added to a profile on MOJ People Finder"
+      subject: "This email address has been added to a profile on People Finder"
   group_update_mailer:
     inform_subscriber:
       subject: "People Finder team updated"
   token_mailer:
     new_token_email:
-      subject: 'Access request to MOJ People Finder'
+      subject: 'Access request to People Finder'
   errors: &errors
     information_request:
       message_required: "You must enter a message to be sent to the person"
@@ -295,7 +295,7 @@ en:
       permanent_secretary_unique_validator:
         leader:
           unique: "%{role} (leader of %{name}) already exists. Select \"No\" or change the current %{role}'s profile first"
-          # unique: "Leader, select \"No\" as there is already a Permanent Secretary (leader of Ministry of Justice). Alternatively, change the current Permanent Secretary's profile first"
+          # unique: "Leader, select \"No\" as there is already a Permanent Secretary (leader of Cabinet Office). Alternatively, change the current Permanent Secretary's profile first"
   activerecord:
     errors:
       <<: *errors
@@ -307,7 +307,7 @@ en:
         email: Main email
         secondary_email: Alternative work email
       memberships:
-        leader: "Are you the Permanent Secretary of the Ministry of Justice?"
+        leader: "Are you the Permanent Secretary of the Cabinet Office?"
         group: Team
       membership:
         leader: ''
@@ -327,7 +327,7 @@ en:
   home:
     show:
       heading: People Finder
-      explanation: Search for a person or team in the Ministry of Justice
+      explanation: Search for a person or team in the Cabinet Office
       about_usage: *about_usage
       unsupported_browser_warning_html: |
         <h1 id='error-summary-heading' class='heading-medium error-summary-heading'>
@@ -352,14 +352,14 @@ en:
       hint_add_person_team_not_found: "If you can’t find your team, you’ll need to add it."
       hint_add_person_to_team: "Find the team from this organisation browser."
       hint_team_name: "Write out the name of your team in full. Do not use initials."
-      hint_team_acronym: "If your team is also known by its initials (eg HMCTS) add them below."
+      hint_team_acronym: "If your team is also known by its initials (eg EDS) add them below."
       hint_team_description: "What is the role and purpose of the team?"
       hint_team_email_address: "Enter an email for people to get in touch with the team"
       hint_person_upload_group: |
         You can only upload people’s details to an existing team.
       information_request_label: "Enter your message"
       location_in_building_hint: "For example, 10.30"
-      building_hint: "For example, 102 Petty France"
+      building_hint: "For example, 70 Whitehall"
       city_hint: "For example, London"
       current_project_hint:
         mine: |
@@ -437,7 +437,7 @@ en:
         duplicate_profile: Remove duplicate profile
         inappropriate_content: Remove inappropriate content
         inappropriate_content_info: Inappropriate content
-        person_left: Remove the profile as the person has left MOJ
+        person_left: Remove the profile as the person has left the department
         person_left_info: Additional information
 
     submit:
@@ -460,7 +460,7 @@ en:
     hint:
       person:
         location_in_building: "For example, 10.30"
-        building: "For example, 102 Petty France"
+        building: "For example, 70 Whitehall"
         city: "For example, London"
         current_project: List the names of current projects this person is working on. Use a comma to separate project names.
         working_days: Select all that apply
@@ -469,7 +469,7 @@ en:
         role: Role within this team
       group:
         name: Write out the name of your team in full. Do not use initials
-        acronym: If your team is also known by its initials (eg HMCTS) add them below
+        acronym: If your team is also known by its initials (eg EDS) add them below
         description: What is the role and purpose of the team?
       suggestion:
         missing_fields_info: Your message will be emailed to the person. You can make changes to the wording

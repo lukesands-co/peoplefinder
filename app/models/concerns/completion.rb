@@ -6,8 +6,8 @@ module Concerns::Completion
   include Concerns::BucketedCompletion
 
   ADEQUATE_FIELDS = %i(
-    building
-    city
+    building_id
+    city_id
     location_in_building
     primary_phone_number
   ).freeze

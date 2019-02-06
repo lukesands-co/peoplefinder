@@ -194,6 +194,12 @@ $border-color: #bfc1c3;
     margin-bottom: $gutter;
   }
 
+  h3{
+    margin-top: $gutter;
+    @include core-19;
+    font-weight: 700;
+  }
+
   h4{
     margin-top: $gutter;
     @include core-19;

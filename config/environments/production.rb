@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.force_ssl = true
+  config.force_ssl = false
   config.cache_classes = true
   config.eager_load = true
   config.consider_all_requests_local       = false
@@ -14,12 +14,12 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.active_record.dump_schema_after_migration = false
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    address: ENV['SMTP_HOST'],
     port: '587',
     authentication: :plain,
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
-    domain: ENV['SENDGRID_DOMAIN'] || 'people-finder.dsd.io',
+    user_name: ENV['SMTP_USERNAME'],
+    password: ENV['SMTP_PASSWORD'],
+    domain: ENV['SMTP_DOMAIN'],
     enable_starttls_auto: true
   }
   config.filter_parameters += [

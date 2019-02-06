@@ -46,6 +46,8 @@ class Person < ActiveRecord::Base
   include Concerns::DataMigrationUtils
 
   belongs_to :profile_photo
+  belongs_to :city
+  belongs_to :building
 
   extend FriendlyId
   friendly_id :slug_source, use: :slugged
@@ -193,9 +195,20 @@ class Person < ActiveRecord::Base
     [primary_phone_number, secondary_phone_number].find(&:present?)
   end
 
+  delegate :address, to: :building, prefix: true, allow_nil: true
+  delegate :name,    to: :city,     prefix: true, allow_nil: true
+
   include Concerns::ConcatenatedFields
-  concatenated_field :location, :location_in_building, :building, :city, join_with: ', '
+  concatenated_field :location, :location_in_building, :building_value, :city_value, join_with: ', '
   concatenated_field :name, :given_name, :surname, join_with: ' '
+
+  def building_value
+    custom_building.presence || building_address
+  end
+
+  def city_value
+    custom_city.presence || city_name
+  end
 
   def at_permitted_domain?
     EmailAddress.new(email).permitted_domain?

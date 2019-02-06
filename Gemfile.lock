@@ -141,17 +141,17 @@ GEM
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
       dotenv (= 1.0.2)
-    elasticsearch (1.0.8)
-      elasticsearch-api (= 1.0.7)
-      elasticsearch-transport (= 1.0.7)
-    elasticsearch-api (1.0.7)
+    elasticsearch (1.0.18)
+      elasticsearch-api (= 1.0.18)
+      elasticsearch-transport (= 1.0.18)
+    elasticsearch-api (1.0.18)
       multi_json
-    elasticsearch-model (0.1.6)
+    elasticsearch-model (0.1.9)
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
-    elasticsearch-rails (0.1.6)
-    elasticsearch-transport (1.0.7)
+    elasticsearch-rails (0.1.9)
+    elasticsearch-transport (1.0.18)
       faraday
       multi_json
     equalizer (0.0.11)
@@ -168,6 +168,9 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware-aws-signers-v4 (0.1.9)
+      aws-sdk-resources (>= 2, < 3)
+      faraday (~> 0.9)
     fastimage (2.1.0)
     ffi (1.9.10)
     fission (0.5.0)
@@ -442,6 +445,7 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
+    puma (2.16.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (1.6.8)
@@ -623,14 +627,17 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails
   daemon
+  daemons (~> 1.2.4)
   database_cleaner
   delayed_job!
   delayed_job_active_record (~> 4.1.0)
   dotenv-rails
-  elasticsearch-model (~> 0.1.4)
-  elasticsearch-rails (~> 0.1.4)
+  elasticsearch-model (~> 0.1.8)
+  elasticsearch-rails (~> 0.1.8)
+  elasticsearch-transport (~> 1.0.14)
   factory_girl_rails
   faker (~> 1.7)
+  faraday_middleware-aws-signers-v4
   fastimage (~> 2.1)
   fog
   foreman
@@ -662,6 +669,7 @@ DEPENDENCIES
   premailer-rails (~> 1.9)
   pry-byebug
   pry-rails
+  puma (~> 2.16.0)
   pundit (~> 1.1)
   rails (~> 4.2.8)
   rb-fsevent
@@ -692,7 +700,7 @@ DEPENDENCIES
   will_paginate-bootstrap (~> 1.0, >= 1.0.1)
 
 RUBY VERSION
-   ruby 2.3.3p222
+   ruby 2.3.8p459
 
 BUNDLED WITH
-   1.14.6
+   1.17.3

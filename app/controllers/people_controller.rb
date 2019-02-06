@@ -23,6 +23,10 @@ class PeopleController < ApplicationController
     @person = Person.new
     build_membership @person
     authorize @person
+
+    @person.build_building
+    @person.build_city
+
   end
 
   # GET /people/1/edit
@@ -30,6 +34,9 @@ class PeopleController < ApplicationController
     authorize @person
     @activity = params[:activity]
     build_membership @person
+
+      @person.build_building  unless @person.building
+    @person.build_city      unless @person.city
   end
 
   # POST /people
@@ -95,7 +102,8 @@ class PeopleController < ApplicationController
 
   def person_params_list
     [
-      :given_name, :surname, :location_in_building, :building, :city,
+      :given_name, :surname, :location_in_building,
+      :building_id, :city_id, :custom_building, :custom_city,
       :primary_phone_number, :secondary_phone_number, :pager_number,
       :email, :secondary_email,
       :profile_photo_id, :crop_x, :crop_y, :crop_w, :crop_h,

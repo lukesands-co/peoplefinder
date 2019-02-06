@@ -20,9 +20,27 @@
   = f.text_field :secondary_phone_number
   = f.text_field :pager_number
   = f.text_field :secondary_email
-  = f.text_field :location_in_building
-  = f.text_field :building
-  = f.text_field :city
+
+
+  %h3.heading-medium.with-border-lg
+    = "Location"
+
+  .form-group
+    = f.label :city, class: 'form-label-bold' do
+      City (optional)
+    = f.select :city_id, cities_options(@person), {include_blank: 'Select a city'}, class: 'form-control'
+    .select_custom_field
+      = f.text_field :custom_city, disabled: 'disabled', class: 'form-control'
+
+  .form-group
+    = f.label :building, class: 'form-label-bold' do
+      Building (optional)
+    = f.select :building_id, buildings_options(@person), {include_blank: 'Select a building'}, class: 'form-control'
+    .select_custom_field
+      = f.text_field :custom_building, disabled: 'disabled', class: 'form-control' 
+
+  .form-group
+    = f.text_field :location_in_building
 
   .form-group
     #error_person_membership

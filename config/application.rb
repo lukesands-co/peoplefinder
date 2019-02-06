@@ -47,8 +47,6 @@ module Peoplefinder
     config.active_record.raise_in_transactional_callbacks = true
     config.active_record.schema_format = :ruby
 
-    config.elastic_search_url = ENV['MOJ_PF_ES_URL']
-
     config.ga_tracking_id = (ENV['GA_TRACKING_ID'] || '')
 
     config.rack_timeout = (ENV['RACK_TIMEOUT'] || 14)
@@ -69,7 +67,7 @@ module Peoplefinder
 
     # The following values are required by the phase banner
     config.phase = 'live'
-    config.feedback_url = 'https://docs.google.com/a/digital.justice.gov.uk/forms/d/1dJ9xQ66QFvk8K7raf60W4ZXfK4yTQ1U3EeO4OLLlq88/viewform'
+    config.feedback_url = 'https://docs.google.com/a/cabinetoffice.gov.uk/forms/d/1TPyDF6-TIVjsD_vCS99dTDL9-0t9WLhjG1l8WBqlrAw/viewform'
 
     # make the geckoboard publisher available generally
     # NOTE: may need to eager load paths instead if lib code is commonly called

@@ -67,4 +67,6 @@ Rails.application.routes.draw do
   end
 
   get '/cookies', to: 'pages#show', id: 'cookies', as: :cookies
+  get '/privacy', to: 'pages#show', id: 'privacy', as: :privacy
+
 end

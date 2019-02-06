@@ -1,6 +1,18 @@
 namespace :peoplefinder do
   namespace :db do
 
+    desc 'remove stale profiles'
+    task :remove_stale_profiles => :environment do
+      puts '...removing stale profiles'
+      Person.where("last_login_at < ? and super_admin = FALSE", 6.months.ago).destroy_all
+    end
+
+    desc 'reset subscribed memberships'
+    task :reset_subscribed_memberships => :environment do
+      puts '...resetting subscribed memberships'
+      Membership.update_all subscribed: false
+    end
+
     desc 'drop all tables'
     task :clear => :environment do
       conn = ActiveRecord::Base.connection

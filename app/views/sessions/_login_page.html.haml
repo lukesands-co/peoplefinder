@@ -10,25 +10,6 @@
       - else
         = t('.heading')
 
-    %p.lede
-      - if @unauthorised_login
-        - t('.intro_unauthorised', ttl: distance_of_time_in_words(Token.ttl)).each_line do |line|
-          = line
-      -else
-        - t('.intro', ttl: distance_of_time_in_words(Token.ttl)).each_line do |line|
-          = line
-
-- if feature_enabled?('token_auth')
-  %h2.heading-medium
-    = t('.heading_other')
-
-  = form_for (@token ||= Token.new) do |f|
-    = f.text_field :user_email
-    = f.hidden_field(:unauthorised_login, value: @unauthorised_login)
-    = f.submit t('.log_in_email'), { class: 'button', data: token_request_analytics_attributes }
-
-  %hr
-
 .grid-row
   .column-full
     %h2.heading-medium
@@ -38,3 +19,21 @@
     %p
       = link_to t('.log_in_google'), "/auth/gplus", class: 'button login-button'
 
+    %hr
+
+    %p
+      - if @unauthorised_login
+        - t('.intro_unauthorised', ttl: distance_of_time_in_words(Token.ttl)).each_line do |line|
+          = line
+      -else
+        - t('.intro', ttl: distance_of_time_in_words(Token.ttl)).each_line do |line|
+          = line
+
+    - if feature_enabled?('token_auth')
+      %h2.heading-medium
+        = t('.heading_other')
+
+      = form_for (@token ||= Token.new) do |f|
+        = f.text_field :user_email
+        = f.hidden_field(:unauthorised_login, value: @unauthorised_login)
+        = f.submit t('.log_in_email'), { class: 'button', data: token_request_analytics_attributes }

@@ -27,6 +27,9 @@ class PermanentSecretaryUniqueValidator < ActiveModel::Validator
   end
 
   def perm_sec_exists?
+    if @record.person && @record.person.super_admin?
+      return false
+    end
     current_perm_sec.present? &&
       current_perm_sec.id != @record.id
   end

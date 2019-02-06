@@ -276,13 +276,13 @@ var teamSelector = function teamSelector(isPerson, obj) {
       }
       this.selector.find('.team-led').text(teamName + ' team');
 
-      if (teamName === 'Ministry of Justice') {
+      if (teamName === 'Cabinet Office') {
         var legend = this.selector.find('.team-leader legend');
         this.originalTeamLedQuestion = legend.html();
         if (legend.text().indexOf('you')) {
-          legend.text('Are you the Permanent Secretary?');
+          legend.text('Are you the Permanent Secretary or Minister?');
         } else {
-          legend.text('Is this person the Permanent Secretary?');
+          legend.text('Is this person the Permanent Secretary or Minister?');
         }
       }
     }
