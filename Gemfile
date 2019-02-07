@@ -51,9 +51,7 @@ gem 'carrierwave',
   git: 'https://github.com/carrierwaveuploader/carrierwave.git',
   tag: 'cc39842e44edcb6187b2d379a606ec48a6b5e4a8'
 
-gem 'omniauth-gplus', 
-  git: 'https://github.com/lukesands-co/omniauth-gplus.git',
-  branch: 'patch-1'
+gem 'omniauth-google-oauth2', '~> 0.6.0'
  
 group :assets do
   gem 'coffee-rails'

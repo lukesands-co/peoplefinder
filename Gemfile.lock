@@ -24,14 +24,6 @@ GIT
     sentry-raven (0.14.0)
       faraday (>= 0.7.6)
 
-GIT
-  remote: https://github.com/lukesands-co/omniauth-gplus.git
-  revision: 0675dad1a35152ba6ec397cd2ac7eb460a9e06eb
-  branch: patch-1
-  specs:
-    omniauth-gplus (2.0.1)
-      omniauth-oauth2 (~> 1.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -411,6 +403,10 @@ GEM
     omniauth (1.4.3)
       hashie (>= 1.2, < 4)
       rack (>= 1.6.2, < 3)
+    omniauth-google-oauth2 (0.6.0)
+      jwt (>= 2.0)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.5)
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
@@ -661,7 +657,7 @@ DEPENDENCIES
   mini_magick
   minitest
   netaddr
-  omniauth-gplus!
+  omniauth-google-oauth2 (~> 0.6.0)
   paper_trail (~> 4.0.2)
   pg
   poltergeist
