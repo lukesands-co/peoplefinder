@@ -11,10 +11,10 @@ if Rails.env.production? or Rails.env.staging?
     faraday.adapter  Faraday.default_adapter
   end
 
-  Elasticsearch::Model.client = Elasticsearch::Client.new(transport: transport, transport_options: { headers: { accept:   'application/json' }})
+  Elasticsearch::Model.client = Elasticsearch::Client.new(transport: transport, transport_options: { headers: { accept:   'application/json', content_type: 'application/json' }})
 
 end
 
 if Rails.env.development?
-  Elasticsearch::Model.client = Elasticsearch::Client.new(trace: true, log: true, transport_options: { headers: { accept:   'application/json' }})
+  Elasticsearch::Model.client = Elasticsearch::Client.new(trace: true, log: true, transport_options: { headers: { accept:   'application/json', content_type: 'application/json' }})
 end
