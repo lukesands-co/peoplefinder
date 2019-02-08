@@ -18,7 +18,7 @@ class ProblemReportsController < ApplicationController
     return_path = request.env['HTTP_REFERER']
     begin
       path_hash = Rails.application.routes.recognize_path(return_path)
-      return_path = new_sessions_path if path_hash[:provider] == 'gplus'
+      return_path = new_sessions_path if path_hash[:provider] == 'google_oauth2'
     rescue ActionController::RoutingError
       return_path = new_sessions_path
     end
