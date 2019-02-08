@@ -14,3 +14,7 @@ if Rails.env.production? or Rails.env.staging?
   Elasticsearch::Model.client = Elasticsearch::Client.new(transport: transport)
 
 end
+
+if Rails.env.development?
+  Elasticsearch::Model.client = Elasticsearch::Client.new(trace: true, log: true)
+end

@@ -37,8 +37,8 @@ module Concerns::Searchable
       }
     } do
       mapping do
-        indexes :name, search_analyzer: 'name_synonyms_analyzer', type: 'string'
-        indexes :email, index: :not_analyzed
+        indexes :name, search_analyzer: 'name_synonyms_analyzer', analyzer: 'standard', type: 'text', fielddata: true
+        indexes :email, type: 'keyword'
       end
     end
   end
