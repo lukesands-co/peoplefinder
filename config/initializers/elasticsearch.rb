@@ -12,7 +12,6 @@ transport = Elasticsearch::Transport::Transport::HTTP::Faraday.new(
   faraday.request :json
   faraday.response :logger 
   faraday.response :raise_error
-
   faraday.adapter  Faraday.default_adapter
 end
 
