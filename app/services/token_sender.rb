@@ -1,4 +1,5 @@
 require 'secure'
+require 'notifications/client'
 
 class TokenSender
 
@@ -11,7 +12,16 @@ class TokenSender
   def call view
     obtain_token
     if @token.valid?
-      TokenMailer.new_token_email(@token).deliver_later queue: :high_priority
+
+      client = Notifications::Client.new(Rails.application.config.notify_api_key)
+      response = client.send_email(
+        email_address: @token.user_email,
+        template_id: '5b62b271-5996-4fb8-91e5-d0e83597456f',
+        personalisation: {
+          url: Rails.application.config.full_host + '/' + @token.value
+        }
+      )
+
       view.render_create_view token: @token
     elsif user_email_error?
       view.render_new_view_with_errors token: @token

@@ -38,6 +38,10 @@ module Peoplefinder
 
     config.support_email = ENV.fetch('SUPPORT_EMAIL')
 
+    config.full_host = ENV.fetch('FULL_HOST')
+
+    config.notify_api_key = ENV.fetch('NOTIFY_API_KEY')
+
     config.action_mailer.default_options = {
       from:  config.support_email
     }

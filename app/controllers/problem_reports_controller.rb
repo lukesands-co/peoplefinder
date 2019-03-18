@@ -1,9 +1,26 @@
+require 'notifications/client'
+
 class ProblemReportsController < ApplicationController
   skip_before_action :ensure_user
 
   def create
     problem_report = ProblemReport.new(problem_report_params)
-    ProblemReportMailer.problem_report(problem_report.to_hash).deliver_later
+    
+    client = Notifications::Client.new(Rails.application.config.notify_api_key)
+    response = client.send_email(
+      email_address: Rails.application.config.support_email,
+      template_id: 'd71ae7a5-7dd4-44d3-a713-aa79aeb0e4b2',
+      personalisation: {
+        email: problem_report.person_email || '',
+        person_id: problem_report.person_id || '',
+        ip: problem_report.ip_address,
+        browser: problem_report.browser,
+        timestamp: problem_report.reported_at,
+        goal: problem_report.goal || '',
+        problem: problem_report.problem || ''
+      }
+    )
+
     notice('report_sent')
     redirect_to valid_return_path_or_login
   end
