@@ -18,7 +18,7 @@ class TokenSender
         email_address: @token.user_email,
         template_id: '5b62b271-5996-4fb8-91e5-d0e83597456f',
         personalisation: {
-          url: Rails.application.config.full_host + '/' + @token.value
+          url: Rails.application.config.full_host + '/tokens/' + @token.value
         }
       )
 
