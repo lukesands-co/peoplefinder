@@ -11,11 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228181641) do
+ActiveRecord::Schema.define(version: 20190201181641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
+
+  create_table "buildings", force: :cascade do |t|
+    t.string "address"
+  end
+
+  add_index "buildings", ["address"], name: "index_buildings_on_address", unique: true, using: :btree
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+  end
+
+  add_index "cities", ["name"], name: "index_cities_on_name", unique: true, using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -42,11 +53,13 @@ ActiveRecord::Schema.define(version: 20170228181641) do
     t.text     "ancestry"
     t.integer  "ancestry_depth",                default: 0, null: false
     t.text     "acronym"
+    t.integer  "policy_id"
     t.datetime "description_reminder_email_at"
     t.integer  "members_completion_score"
   end
 
   add_index "groups", ["ancestry"], name: "index_groups_on_ancestry", using: :btree
+  add_index "groups", ["policy_id"], name: "index_groups_on_policy_id", using: :btree
   add_index "groups", ["slug"], name: "index_groups_on_slug", using: :btree
 
   create_table "memberships", force: :cascade do |t|
@@ -56,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170228181641) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "leader",     default: false
-    t.boolean  "subscribed", default: true,  null: false
+    t.boolean  "subscribed", default: false, null: false
   end
 
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
@@ -84,15 +97,20 @@ ActiveRecord::Schema.define(version: 20170228181641) do
     t.integer  "login_count",            default: 0,     null: false
     t.datetime "last_login_at"
     t.boolean  "super_admin",            default: false
-    t.text     "building"
-    t.text     "city"
     t.text     "secondary_email"
     t.integer  "profile_photo_id"
+    t.integer  "building_id"
+    t.integer  "city_id"
+    t.string   "staff_nr"
+    t.string   "custom_building"
+    t.string   "custom_city"
     t.datetime "last_reminder_email_at"
     t.string   "current_project"
     t.text     "pager_number"
   end
 
+  add_index "people", ["building_id"], name: "index_people_on_building_id", using: :btree
+  add_index "people", ["city_id"], name: "index_people_on_city_id", using: :btree
   add_index "people", ["slug"], name: "index_people_on_slug", unique: true, using: :btree
 
   create_table "permitted_domains", force: :cascade do |t|
@@ -153,4 +171,6 @@ ActiveRecord::Schema.define(version: 20170228181641) do
 
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "people"
+  add_foreign_key "people", "buildings"
+  add_foreign_key "people", "cities"
 end
