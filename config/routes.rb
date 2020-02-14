@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   get 'ping', to: 'ping#index'
   get 'healthcheck', to: 'health_check#index'
 
-  namespace :api, format: [:json] do
+  namespace :api, format: [:json, :csv] do
     resources :people, only: [:show]
+    get '/inactive_users', to: 'people#inactive_users'
   end
 
   resources :profile_photos, only: [:create]
