@@ -32,6 +32,7 @@
 #  current_project        :string
 #  pager_number           :text
 #
+require 'csv'
 
 class Person < ActiveRecord::Base
   attr_accessor :working_days
@@ -57,6 +58,11 @@ class Person < ActiveRecord::Base
   end
 
   include Concerns::Searchable
+
+  scope :inactive_users, -> (status,duration) {
+    select("given_name,surname,slug,email").
+    where("last_login_at < ?", Time.now - duration.to_i.month)
+  }
 
   def as_indexed_json(_options = {})
     as_json(
@@ -181,6 +187,15 @@ class Person < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << [:id, :friendly_id, :given_name, :surname, :email, :primary_phone_number, :secondary_phone_number]
+      all.each do |person|
+        csv << [person.id, person.friendly_id, person.given_name, person.surname, person.email]
+      end
+    end
   end
 
   def role_and_group
