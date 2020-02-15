@@ -16,6 +16,17 @@ module Api
         end
    end
 
+
+   def remove
+     user_id = params[:user]
+     #@people = Person.where(slug: user_id)
+     #if @people 
+     Person.admin_delete(user_id)
+     respond_to do |format|
+     format.json { render json: {message: "Person deleted successfully"}, status: 200}
+     end
+   end
+
    def profiles
      profile = params[:type]
 
