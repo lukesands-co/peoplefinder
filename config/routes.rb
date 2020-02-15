@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api, format: [:json, :csv] do
     resources :people, only: [:show]
     get '/inactive_users', to: 'people#inactive_users'
+    get '/profiles', to: 'people#profiles'
   end
 
   resources :profile_photos, only: [:create]

@@ -11,6 +11,8 @@
 #  leader     :boolean          default(FALSE)
 #  subscribed :boolean          default(TRUE), not null
 #
+require 'csv'
+
 
 class Membership < ActiveRecord::Base
   has_paper_trail class_name: 'Version',
@@ -32,6 +34,11 @@ class Membership < ActiveRecord::Base
   concatenated_field :to_s, :group_name, :role, join_with: ', '
 
   scope :subscribing, -> { where(subscribed: true) }
+
+  scope :leadership, -> {
+    Person.where(id: Membership.where(leader: true).select(:person_id)).
+    select("given_name,surname,slug,email")
+  }
 
   before_destroy { |m| UpdateGroupMembersCompletionScoreJob.perform_later(m.group) }
 end

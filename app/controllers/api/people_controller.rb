@@ -16,7 +16,19 @@ module Api
         end
    end
 
+   def profiles
+     profile = params[:type]
 
+     if profile.eql? "teamleader"
+       @membership = Membership.leadership
+          respond_to do |format|
+             format.json { render json: @membership}
+             format.csv { send_data @membership.to_csv}
+          end
+      else
+        send_data "Only 'type=teamleader' is supported now..\nUSAGE - /api/profiles?type=teamleader"
+     end
+   end
 
     private
 
