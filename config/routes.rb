@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :people, only: [:show]
     get '/inactive_users', to: 'people#inactive_users'
     get '/profiles', to: 'people#profiles'
+    delete '/profiles', to: 'people#profiles'
   end
 
   resources :profile_photos, only: [:create]
