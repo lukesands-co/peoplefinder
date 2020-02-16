@@ -29,6 +29,12 @@ module Api
       elsif profile_type.eql? "delete"
             email = params[:emailaddress]
             remove(email)
+      elsif profile_type.eql? 'all'
+          @people = Person.all.select("email,given_name,surname,slug")
+          respond_to do |format|
+             format.json { render json: @people}
+             format.csv { send_data @people.to_csv}
+          end
       else
          send_data "The URL is not resolving to any action. Please check!"
      end
