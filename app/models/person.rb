@@ -64,6 +64,13 @@ class Person < ActiveRecord::Base
     where("last_login_at < ?", Time.now - duration.to_i.month)
   }
 
+  scope :admin_delete, -> (email) {
+    begin
+      Person.where(email: email).destroy_all
+    rescue
+    end
+  }
+
   def as_indexed_json(_options = {})
     as_json(
       only: [:surname, :current_project, :email],
