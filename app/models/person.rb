@@ -198,7 +198,7 @@ class Person < ActiveRecord::Base
 
   def self.to_csv
     CSV.generate do |csv|
-      csv << [:id, :friendly_id, :given_name, :surname, :email, :primary_phone_number, :secondary_phone_number]
+      csv << [:id, :friendly_id, :given_name, :surname, :emailaddress]
       all.each do |person|
         csv << [person.id, person.friendly_id, person.given_name, person.surname, person.email]
       end
