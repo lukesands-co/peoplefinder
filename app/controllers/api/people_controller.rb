@@ -12,7 +12,7 @@ module Api
          @people = Person.inactive_users(params[:status],params[:duration])
          respond_to do |format|
            format.json { render json: @people}
-           format.csv { send_data @people.to_csv}
+           format.csv { send_data @people.to_csv, filename: "inactive_users.csv"}
         end
    end
 
@@ -23,7 +23,7 @@ module Api
        @membership = Membership.leadership
           respond_to do |format|
              format.json { render json: @membership}
-             format.csv { send_data @membership.to_csv}
+             format.csv { send_data @membership.to_csv, filename: "teamleaders.csv"}
           end
       else
         send_data "Only 'type=teamleader' is supported now..\nUSAGE - /api/profiles?type=teamleader"
