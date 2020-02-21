@@ -42,7 +42,7 @@ class Group < ActiveRecord::Base
     -> { includes(:person).order('people.surname') },
     dependent: :destroy
   has_many :people, through: :memberships
-  has_many :leaderships, -> { where(leader: true) }, class_name: 'Membership'
+  has_many :leaderships, -> { where(leader: true).order('created_at') }, class_name: 'Membership'
   has_many :leaders, through: :leaderships, source: :person
   has_many :non_leaders, through: :non_leaderships, source: :person
 
