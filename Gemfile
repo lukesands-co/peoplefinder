@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.4.9'
 gem 'rails', '~> 4.2.8'
+gem 'rack', '1.6.8'
 gem 'xmlrpc', '~> 0.3.0'
 gem 'text'
 gem 'ancestry', '~> 2.1'

@@ -450,7 +450,7 @@ GEM
     puma (2.16.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
-    rack (1.6.13)
+    rack (1.6.8)
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
       rack (~> 1.4)
@@ -677,6 +677,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 2.16.0)
   pundit (~> 1.1)
+  rack (= 1.6.8)
   rails (~> 4.2.8)
   rb-fsevent
   recipient_interceptor (~> 0.1.2)
